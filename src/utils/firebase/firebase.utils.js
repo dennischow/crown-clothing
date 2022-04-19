@@ -1,4 +1,3 @@
-import { async } from "@firebase/util";
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithRedirect, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
@@ -16,14 +15,14 @@ const firebaseConfig = {
 // Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig);
 
-// Provider
-const provider = new GoogleAuthProvider();
-provider.setCustomParameters({
+// Google Provider
+const googleProvider = new GoogleAuthProvider();
+googleProvider.setCustomParameters({
     prompt: "select_account",
 });
 
 export const auth = getAuth();
-export const signInWithGooglePopup = () => signInWithPopup(auth, provider);
+export const signInWithGooglePopup = () => signInWithPopup(auth, googleProvider);
 
 export const db = getFirestore();
 export const createUserDocumentFromAuth = async (userAuth) => {
@@ -34,6 +33,7 @@ export const createUserDocumentFromAuth = async (userAuth) => {
     console.log(userSnapshot);
     console.log(`Is user exists?`, userSnapshot.exists());
 
+    // Is user does not exists, then create a document for this user.
     if (!userSnapshot.exists()) {
         const { displayName, email } = userAuth;
         const createAt = new Date();
@@ -50,8 +50,4 @@ export const createUserDocumentFromAuth = async (userAuth) => {
     }
 
     return userDocRef;
-
-    // Is user exists
-
-    // Is user does not exists
 };
