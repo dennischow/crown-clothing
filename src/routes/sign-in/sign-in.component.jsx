@@ -2,6 +2,8 @@ import { signInWithGooglePopup, createUserDocumentFromAuth } from "../../utils/f
 
 import "./sign-in.styles.scss";
 
+import SignUpForm from "../../components/sign-up-form/sign-up-form.component";
+
 const SignIn = () => {
     const logGoogleUser = async () => {
         const { user } = await signInWithGooglePopup();
@@ -14,6 +16,8 @@ const SignIn = () => {
             <button type="button" onClick={logGoogleUser}>
                 Sign-in with Google Popup
             </button>
+
+            <SignUpForm />
         </div>
     );
 };
