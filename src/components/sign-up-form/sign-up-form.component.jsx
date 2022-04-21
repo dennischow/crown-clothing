@@ -64,8 +64,6 @@ const SignUpForm = () => {
 
                 <FromInput label="Confirm Password" type="passowrd" required onChange={handleChange} name="confirmPassword" value={confirmPassword} />
 
-                <FromInput label="Email" type="email" required onChange={handleChange} name="email" value={email} />
-
                 <Button buttonType="default" type="submit">
                     Sign Up
                 </Button>
