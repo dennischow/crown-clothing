@@ -9,14 +9,8 @@ import { ReactComponent as CrownLogo } from "./../../assets/crown.svg";
 import "./navigation.styles.scss";
 
 const Navgiation = () => {
-    const { currentUser, setCurrentUser } = useContext(UserContext);
+    const { currentUser } = useContext(UserContext);
 
-    const signOutHandler = async () => {
-        alert(32);
-        await signOutUser();
-        setCurrentUser(null);
-    };
-    // console.log(currentUser);
     return (
         <Fragment>
             <div className="navigation">
@@ -28,7 +22,7 @@ const Navgiation = () => {
                         Shop
                     </Link>
                     {currentUser ? (
-                        <a className="nav-link" onClick={signOutHandler}>
+                        <a className="nav-link" onClick={signOutUser}>
                             Sign-out
                         </a>
                     ) : (
